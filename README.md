@@ -1,6 +1,6 @@
 # Ejercicio de JSON
 
-##A Partir del fichero JSON movies.json obtener la siguiente información:
+## A Partir del fichero JSON movies.json obtener la siguiente información:
 
 1. Listar información: Listar el título, año y duración de todas las películas.
 
