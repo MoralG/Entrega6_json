@@ -10,11 +10,16 @@ with open("movies.json") as fichero:
 
 dic_opcion1 = {}
 dic_opcion2 = {}
+dic_media_peliculas = {}
 
 lista_actores = []
 lista_peliculas_actores = []
+lista_entre_años = []
+lista_opcion5 = []
 
 encontrado = False
+
+import operator
 
 #----------------------------- Listas y Dicionarios ------------------------------
 
@@ -49,6 +54,32 @@ def peliculas_actores(actor,doc):
             lista_peliculas_actores.append(dic.get("title"))
 
     return lista_peliculas_actores
+
+
+def entre_años(año1, año2, doc):
+
+    for año in range(año1,año2 + 1):
+
+        lista_entre_años.append(str(año))
+
+    for dic in doc:
+
+        if dic.get("year") in lista_entre_años:
+
+            media = sum(dic.get("ratings")) / len(dic.get("ratings"))
+
+            dic_media_peliculas[media] = [dic.get("title"),dic.get("posterurl")]
+    
+    dic_ordenado = sorted(dic_media_peliculas.items(), key=operator.itemgetter(0))
+
+    dic_ordenado.reverse()
+
+    lista_opcion5.append(dic_ordenado[0])
+    lista_opcion5.append(dic_ordenado[1])
+    lista_opcion5.append(dic_ordenado[2])
+
+    return lista_opcion5
+
 
 #------------------------------------ Programa -----------------------------------
 
@@ -154,7 +185,7 @@ while opcion != 0:
         print("")
         print("----------------Peliculas---------------")
         print("")
-        
+
         for peliculas in peliculas_actores(nom_actor,doc):
             
             print(peliculas)
@@ -165,6 +196,33 @@ while opcion != 0:
         print("Opcion 5 elegida (Introduce dos fechas y te muestra el titulo y poster de las tres peliculas con la media mas alta)")
         print("---------------------------------------------------------------------------------")
         print("")
+
+        print("")
+        fecha1 = int(input("Introduce un año: "))
+        fecha2 = int(input("Introduce otro año mayor: "))   
+        print("")    
+
+        while fecha1 > fecha2:
+
+            print("")
+            print("--------------------------")
+            print("ERROR, introduce un año mayor")
+            print("--------------------------")
+            print("")
+
+            fecha2 = int(input("Introduce otro año mayor: "))
+
+        for dic in entre_años(fecha1,fecha2,doc):
+
+            print("--------------------------")
+            print("")
+            print("Titulo:", dic[1][0],"con una media de puntuacion de",dic[0])
+            print("")
+            print("URL:", dic[1][1])
+            print("")
+            print("--------------------------")
+
+
 
     if opcion < 0 or opcion > 5:
 
