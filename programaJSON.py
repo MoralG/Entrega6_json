@@ -2,15 +2,29 @@
 
 import json
 
-with open("marvel.json") as fichero:
+with open("movies.json") as fichero:
 
     doc=json.load(fichero)
 
-#----------------------------------------------------------------------------------
+#--------------------------- Definicion de variables -----------------------------
+
+dic_opcion1 = {}
+
+#----------------------------- Listas y Dicionarios ------------------------------
+
+for dic in doc:
+
+    dic_opcion1[dic.get("title")] = [dic.get("year"), dic.get("duration")]
+
+for dic in doc:
+
+    dic_opcion2[dic.get("title")] = [len(dic.get("actors"))]
+
+#---------------------------------------------------------------------------------
 
 print("")
 print("-------------------MENU--------------------")
-print("(1) Listar titulo, año y duracion de peliculas")
+print("(1) Listar titulo, año y duración de peliculas")
 print("(2) El numero de actores/actrices de cada pelicula")
 print("(3) Buscar por la sinopsis")
 print("(4) Peliculas en las que ha actuado un actor")
@@ -26,11 +40,18 @@ while opcion != 0:
     if opcion == 1:         # opcion 1: lista heroes
 
         print("---------------------------------------------------------------------------------")
-        print("Opcion 1 elegida (Te muestra to titulo, año y duracion de todas las peliculas)")
+        print("Opcion 1 elegida (Te muestra el titulo, año y duración de todas las peliculas)")
         print("---------------------------------------------------------------------------------")
         print("")
-    
 
+        for titulo, lista in dic_opcion1.items():
+            
+            print("")
+            print("Titulo:", titulo)
+            print("Año:", lista[0])
+            print("Duracion:", lista[1].replace("PT",""))
+            print("")
+            print("------------------------------------------")
 
     if opcion == 2:
         
@@ -39,10 +60,12 @@ while opcion != 0:
         print("---------------------------------------------------------------------------------") 
         print("")
 
+
+
     if opcion == 3:
 
         print("---------------------------------------------------------------------------------")
-        print("Opcion 3 elegida (Haz una busqueda recursiva en la descripcion y te muestra las peliculas)")
+        print("Opcion 3 elegida (Haz una busqueda recursiva de la sinopsis y te muestra las peliculas)")
         print("---------------------------------------------------------------------------------")
         print("")
 
@@ -80,7 +103,7 @@ while opcion != 0:
     print("(0) Finalizar el programa")
     print("-------------------------------------------")
     print("")
-    
+
     opcion = int(input("¿Que opcion eliges?   "))
 
 
