@@ -11,6 +11,9 @@ with open("movies.json") as fichero:
 dic_opcion1 = {}
 dic_opcion2 = {}
 
+lista_actores = []
+lista_peliculas_actores = []
+
 encontrado = False
 
 #----------------------------- Listas y Dicionarios ------------------------------
@@ -19,9 +22,33 @@ for dic in doc:
 
     dic_opcion1[dic.get("title")] = [dic.get("year"), dic.get("duration")]
 
+
 for dic in doc:
 
     dic_opcion2[dic.get("title")] = len(dic.get("actors"))
+
+
+for dic in doc:
+
+    for actor in dic.get("actors"):
+        
+        if actor not in lista_actores:
+        
+            lista_actores.append(actor)
+
+lista_actores.sort()
+
+#----------------------------------- Funciones -----------------------------------
+
+def peliculas_actores(actor,doc):
+
+    for dic in doc:
+
+        if actor in dic.get("actors"):
+
+            lista_peliculas_actores.append(dic.get("title"))
+
+    return lista_peliculas_actores
 
 #------------------------------------ Programa -----------------------------------
 
@@ -108,6 +135,30 @@ while opcion != 0:
         print("---------------------------------------------------------------------------------")
         print("")
 
+        print("")
+        nom_actor = input("Introduce actor/actriz: ")   
+        print("")    
+
+        while nom_actor not in lista_actores:
+
+            print("")
+            print("--------------------------")
+            print("ERROR, no existe actor/actriz")
+            print("--------------------------")
+            print("")
+
+            nom_actor = input("Introduce actor/actriz: ")
+        
+        print("")
+        print("El actor", nom_actor,"ha participado en:")
+        print("")
+        print("----------------Peliculas---------------")
+        print("")
+        
+        for peliculas in peliculas_actores(nom_actor,doc):
+            
+            print(peliculas)
+            
     if opcion == 5:
 
         print("---------------------------------------------------------------------------------")
