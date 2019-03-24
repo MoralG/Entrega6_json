@@ -9,6 +9,9 @@ with open("movies.json") as fichero:
 #--------------------------- Definicion de variables -----------------------------
 
 dic_opcion1 = {}
+dic_opcion2 = {}
+
+encontrado = False
 
 #----------------------------- Listas y Dicionarios ------------------------------
 
@@ -18,9 +21,13 @@ for dic in doc:
 
 for dic in doc:
 
-    dic_opcion2[dic.get("title")] = [len(dic.get("actors"))]
+    dic_opcion2[dic.get("title")] = len(dic.get("actors"))
 
-#---------------------------------------------------------------------------------
+#----------------------------------- Funciones -----------------------------------
+
+def 
+
+#------------------------------------ Programa -----------------------------------
 
 print("")
 print("-------------------MENU--------------------")
@@ -60,7 +67,13 @@ while opcion != 0:
         print("---------------------------------------------------------------------------------") 
         print("")
 
+        for titulo, numactor in dic_opcion2.items():
 
+            print("")
+            print("Pelicula:", titulo)
+            print("Nº de actores/actrices:", numactor)
+            print("")
+            print("------------------------------------------")
 
     if opcion == 3:
 
@@ -68,6 +81,35 @@ while opcion != 0:
         print("Opcion 3 elegida (Haz una busqueda recursiva de la sinopsis y te muestra las peliculas)")
         print("---------------------------------------------------------------------------------")
         print("")
+
+        palabra1 = input("Introduce una cadena para buscar: ")
+        palabra2 = input("Introduce otra cadena para buscar: ")
+
+        for dic in doc:
+
+            if dic.get("storyline").count(palabra1) > 0:
+                
+                if dic.get("storyline").count(palabra2) > 0:
+
+                    print("")
+                    print("---------------------------------")
+                    print("Heroe:",dic.get("name"))
+                    print("Descripcion:",dic.get("description"))
+                    encontrado = True
+
+                else:
+
+                    print("")
+                    print("----------------------------------")
+                    print("NO SE HAN ENCONTRADO COINCIDENCIAS")
+                    print("----------------------------------")
+                
+            if encontrado == False:
+
+                print("")
+                print("----------------------------------")
+                print("NO SE HAN ENCONTRADO COINCIDENCIAS")
+                print("----------------------------------")
 
     if opcion == 4:
 
