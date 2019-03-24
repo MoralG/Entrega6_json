@@ -23,10 +23,6 @@ for dic in doc:
 
     dic_opcion2[dic.get("title")] = len(dic.get("actors"))
 
-#----------------------------------- Funciones -----------------------------------
-
-def 
-
 #------------------------------------ Programa -----------------------------------
 
 print("")
@@ -93,23 +89,17 @@ while opcion != 0:
 
                     print("")
                     print("---------------------------------")
-                    print("Heroe:",dic.get("name"))
-                    print("Descripcion:",dic.get("description"))
-                    encontrado = True
-
-                else:
-
+                    print("Pelicula:",dic.get("title"))
                     print("")
-                    print("----------------------------------")
-                    print("NO SE HAN ENCONTRADO COINCIDENCIAS")
-                    print("----------------------------------")
+                    print("Descripcion:",dic.get("storyline"))
+                    encontrado = True
                 
-            if encontrado == False:
+        if encontrado == False:
 
-                print("")
-                print("----------------------------------")
-                print("NO SE HAN ENCONTRADO COINCIDENCIAS")
-                print("----------------------------------")
+            print("")
+            print("----------------------------------")
+            print("NO SE HAN ENCONTRADO COINCIDENCIAS")
+            print("----------------------------------")
 
     if opcion == 4:
 
